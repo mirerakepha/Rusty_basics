@@ -292,7 +292,62 @@ fn never_return_fn() {
 let s1 = String::from("hello");
 let s2 = s1.clone();
 
-println!("s1 = {}, s2 = {}", s1, s2)
+println!("s1 = {}, s2 = {}", s1, s2);
+
+
+
+
+//
+fn strr() {
+    let s: String = String::from("hello world");
+
+    print_str(s.clone());
+
+    println!("{}", s);
+
+    
+}
+fn print_str() {
+    println!("{}",s)
+    
+}
+
+
+
+
+
+
+// Box allows you to allocete directly on a heap
+fn bx() {
+    let x:Box<i32> = Box::new(5);
+    let mut y:Box<i32> = Box::new(1) ;
+
+    *y = 4; //dereferences since you cannot direclty allocate 4 to y
+
+    assert_eq!(*x, 5);
+    println!("success");
+    
+}
+
+
+
+
+
+//partial move
+fn person() {
+    struct Person {
+        name: String,
+        age: Box<u8>,
+    }
+    let persn: Person = Person{
+        name: String::from("alice"),
+        age: Box::new(20),
+    } ;
+
+    let Person {name, ref age} = persn;
+    println!("the person's age is {}", age);
+    println!("the person's name is {}", name);//now owner of the string alice
+}
 
 
 
@@ -300,7 +355,72 @@ println!("s1 = {}, s2 = {}", s1, s2)
 
 
 
+//print the memory address
+fn mem() {
+    let x = 5;
+    let p: &i32 = &x ;//pointer ==>holds the memory address
 
+    println!("thememory address of x is{:p}", p);
+    //the memory address of x is 0x7ffc0965a37c---> it is where the value 5 is stored
+    
+}
+
+
+
+
+//replacing a substring
+fn sbstr() {
+    let mut s: String = String::from("i hate dogs") ;//the s should be mutable
+
+    let s1 = s.replace("dogs", "cows");//dogs changes to cows
+
+    assert_eq!(s1, "i hate cows");
+    println!("success");
+    
+}
+
+
+
+
+
+
+
+//convert &str to string
+fn sstr() {
+    let s: &str = "hello, world" ;
+    greetings(String::from(s)) //convert &str--> string
+}
+fn greetings(s: String) {
+    println!("{}", s);
+    
+}
+
+
+
+
+//convert string to &str
+fn sttr() {
+    let s: String = "hello, world".to_string();
+    let s1: &str = &s; //string to &str
+    
+    println!("success");
+}
+
+
+
+//string index
+fn strid() {
+    let s1 = String::from("hi,@#") ;
+    let h: &str = &s1[0..1];//access h (hi)
+    assert_eq!(h, "h");
+
+    let h1 = &s1[3..6];//excludes 6
+    assert_eq!("{}",h1);
+
+    println!("success");
+
+    
+}
 
 
          
