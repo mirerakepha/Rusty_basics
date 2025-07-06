@@ -423,6 +423,69 @@ fn strid() {
 }
 
 
+
+
+
+//initializing all elements to the same value at once
+fn intarr() {
+    let list: [i32; 100] = [1; 100];
+
+    assert!(list[0] == 1);
+    assert!(list.len() == 100);
+
+    println!("success");
+    
+}
+
+
+
+
+//slice ==> borrows part of a collection without taking ownership of the entire collection
+fn slc() {
+    let arr = [1, 2, 3];
+    let s1 :&[i32]= &arr[0..2];
+    let s2: &str = "hello world";
+
+    println!("success") ;  
+}
+
+
+
+
+
+
+//
+fn complexst() {
+    let s: &str = "你好，世界";    
+
+    let slice: &str = &s[0..3];
+
+    assert!(slice == "你" );
+
+    println!("success");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          
 }
 
