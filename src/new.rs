@@ -128,3 +128,99 @@ fn coount(){
 }
 
 
+
+
+
+
+//using match to get the data an enum variant holds
+enum message{
+    Quit,
+    Move {x: i32, y: i32},
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+fn booln(){
+    let msgs:[Message; 3] = [
+        Message::Quit,
+        Message::Move{x:1, y:3},
+        Message::ChangeColor(255, 255, 0)
+    ];
+    for msg in msgs {
+        show_message(msg)
+    }
+    println!("success");
+}
+fn show_message(){
+    match msg{
+        Message::Move {x:a, y:b}=> {
+            assert_eq!(a, 1);
+            assert_eq!(b, 3);
+        },
+        Message::ChangeColor(r, g,b)=> {
+            assert_eq!(g, 255);
+            assert_eq!(b, 0);
+        }
+        _ => println!("no data in these variants")//if nothing matches then it prints no data in the element
+    }
+}
+
+
+
+
+//
+enum Foo{
+    Bar,
+    Baz,
+    qux(u32)
+}
+fn mn(){
+    let a:: Foo = Foo::Qux(10);
+    match a {
+        Foo::Bar => println!("match foo::bar"),
+        Foo::Baz => println!("match foo::baz"),
+        _ => println!("match others"),
+    }
+}
+
+
+
+
+
+
+
+
+//vector => a vector is dynamic in size
+enum MyEnum{
+    Foo,
+    Bar
+}
+fn eBar(){
+    let mut count = 0;
+    let v: Vec<MyEnum>= vec![MyEnum::Foo, MyEnum::Bar, MyEnum::Foo];
+    for e in v {
+        if matches!(e, MyEnum::Foo) {
+            count += 1;
+        }
+    }
+    assert_eq!(count, 2);
+    println!("success");
+}
+
+
+
+//patterns
+// 10| 20| 30 => means 10 or 20 or 30
+//0..=5 => means from 0 to 5 (5 included)
+
+
+//match guard
+fn mtch(){
+    let num: Option<i32> = some(4);
+    let split: i32 = 5;
+    match num { 
+        Some(x) if x < split => assert!(x < split),
+        Some(x) => assert!(x >= split),
+        None => (),
+    }
+    println!("success");
+}
