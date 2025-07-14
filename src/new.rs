@@ -224,3 +224,46 @@ fn mtch(){
     }
     println!("success");
 }
+
+
+
+
+ //methods.....defined within the context of struct unlike functions
+ struct Rectangle{
+    width: u32,
+    height: u32,
+ }
+ impl Rectangle {
+    fn area(self) -> u32{
+        self.width * self.height 
+    }
+ }
+ fn mn/*main*/(){
+    let rect1: Rectangle = rectangle {width:30, height:50};
+    assert_eq!{rect1.area(), 1500};
+    println!("success");
+ }
+
+
+
+
+ //associated functions
+ struct TrafficLight{
+    color: String,
+ }
+impl TrafficLight{
+    //return a trafficColor contains color "red"
+    pub fn new()-> self{
+        self{
+            color: String::from("red"),
+        }
+    }
+    pub fn get_state(&self) -> &str {
+        &self.color
+    }
+}
+fn mainn /*main*/(){
+    let light: TrafficLight = TrafficLight::new();
+    assert_eq!(light.get_state(), "red");
+    println!("success")
+}
