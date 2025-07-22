@@ -63,7 +63,7 @@ impl MyTrait for MyStruct {
 
 //
 trait bird{
-    fn quack(&self)->string;
+    fn quack(&self)->String;
 }
 struct Duck;
 impl Duck {
@@ -131,6 +131,44 @@ fn main(){
 fn draw_with_box(x: Box<dyn Draw>){
     x.draw();
 }
-fn draw_with_ref(x: Box<dyn Draw>){
+fn draw_with_ref(x: &dyn Draw){
     x.draw();
 }
+
+
+
+
+
+
+
+//
+trait Foo {
+    fn method(&self) -> String;
+}
+impl Foo for u8{
+    fn method (&self) -> String{format!("u8 {}", self)}
+}
+impl Foo for String{
+    fn method(&self) -> String {format!("String {}", self)}
+}
+
+fn static_dispatch <T: Foo>(a:T){
+    a.method();
+}
+
+/*fn static_dispatch_u8 <u8>(a:u8) {
+    a.method();
+} */
+fn dynamic_dispatch(a: &dyn Foo){
+    a.method()
+}
+fn maain(){
+    let x: u8 = 5u8;
+    let y: String = "Hello".to_string();
+    static_dispatch(x);
+    dynamic_dispatch(y);
+    println!("Success");
+}
+
+
+
